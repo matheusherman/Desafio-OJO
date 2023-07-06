@@ -29,27 +29,13 @@ CREATE TABLE enderecos (
 CREATE TABLE pedidos (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     cliente_id BIGINT NOT NULL,
+    produto_id BIGINT NOT NULL,
+    endereco_id BIGINT NOT NULL,
     data_pedido DATETIME NOT NULL,
     status VARCHAR(50) NOT NULL,
-    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
-);
-
-CREATE TABLE itens_pedido (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    pedido_id BIGINT NOT NULL,
-    produto_id BIGINT NOT NULL,
-    quantidade BIGINT NOT NULL,
-    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
-    FOREIGN KEY (produto_id) REFERENCES produtos(id)
-);
-
-CREATE TABLE entregas (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    pedido_id BIGINT NOT NULL,
-    endereco_id BIGINT NOT NULL,
-    status VARCHAR(50) NOT NULL,
-    data_entrega DATETIME,
-    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id),
+    FOREIGN KEY (produto_id) REFERENCES produtos(id),
     FOREIGN KEY (endereco_id) REFERENCES enderecos(id)
 );
+
 
