@@ -1,28 +1,77 @@
-# DESAFIO OJO
+# 🛒📦 Desafio OJO
 
-Este projeto implementa um sistema de compras e entregas baseado em microservices, utilizando as tecnologias Spring Boot, Kotlin e MySQL.
+### Arquitetura de Microservices com Spring Boot e Kotlin
 
-## Descrição
+## 📌 Visão Geral
 
-O sistema é composto por dois microservices: Compras e Entregas. 
-- O microservice de Compras é responsável por gerenciar os pedidos de compra, clientes e produtos. 
-- O microservice de Entregas é responsável por gerenciar as ordens de entrega e endereços de entrega dos pedidos.
+Este projeto foi desenvolvido como solução para o **Desafio OJO** e implementa um **sistema de compras e entregas** baseado em **microservices**, utilizando **Spring Boot**, **Kotlin** e **MySQL**.
 
-Os microservices se comunicam entre si por meio de chamadas REST. 
-Quando um pedido é inserido no microservice de Compras, uma ordem de entrega correspondente é criada no microservice de Entregas.
+A proposta do sistema é demonstrar a comunicação entre serviços independentes, respeitando boas práticas de arquitetura, organização de código e responsabilidade bem definida entre os domínios.
 
-## Tecnologias Utilizadas
+---
 
-- Spring Boot
-- REST
-- Kotlin
-- MySQL
+## 🧩 Descrição da Arquitetura
 
-## Estrutura do Projeto
+O sistema é composto por **dois microservices independentes**:
 
-O projeto está dividido nos seguintes diretórios:
+### 🛍️ Compras Service
 
-- `compras-service`: Microservice de Compras.
-- `entregas-service`: Microservice de Entregas.
-- `database-scripts`: Scripts SQL para criação das tabelas nos bancos de dados de Compras e Entregas.
+Responsável por:
 
+* Gerenciamento de **pedidos de compra**
+* Cadastro de **clientes**
+* Cadastro de **produtos**
+
+### 🚚 Entregas Service
+
+Responsável por:
+
+* Gerenciamento das **ordens de entrega**
+* Controle dos **endereços de entrega** relacionados aos pedidos
+
+---
+
+## 🔗 Comunicação entre os Microservices
+
+A comunicação entre os serviços é feita por meio de **chamadas REST**.
+
+Fluxo principal:
+
+1. Um pedido é criado no **Compras Service**
+2. Após a criação do pedido, uma **ordem de entrega correspondente** é automaticamente criada no **Entregas Service**
+3. Cada microservice mantém seu próprio banco de dados, garantindo **baixo acoplamento**
+
+---
+
+## 🧰 Tecnologias Utilizadas
+
+* **Spring Boot**
+* **Kotlin**
+* **REST APIs**
+* **MySQL**
+* **Arquitetura de Microservices**
+
+---
+
+## 🗂 Estrutura do Projeto
+
+```
+.
+├── compras-service
+│   └── Microservice responsável pelas compras
+│
+├── entregas-service
+│   └── Microservice responsável pelas entregas
+│
+└── database-scripts
+    └── Scripts SQL para criação das tabelas
+       nos bancos de dados de Compras e Entregas
+```
+
+---
+
+## ✅ Observações
+
+* Cada microservice possui **banco de dados próprio**
+* A separação de responsabilidades segue princípios de **Domain-Driven Design**
+* Comunicação síncrona via REST para simplicidade e clareza do fluxo
